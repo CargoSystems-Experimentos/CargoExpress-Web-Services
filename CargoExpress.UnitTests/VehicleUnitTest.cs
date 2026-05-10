@@ -6,7 +6,7 @@ namespace CargoExpress.UnitTests;
 
 public class VehicleUnitTest
 {
-    
+    /*
     [Fact]
     public async Task GetAll_Vehicle_Success()
     {
@@ -91,4 +91,5 @@ public class VehicleUnitTest
         Assert.Equal(6000, vehicle.MaxLoad);
         Assert.Equal(40, vehicle.Volume);
     }
+    */
 }

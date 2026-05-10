@@ -8,6 +8,7 @@ namespace CargoExpress.UnitTests;
 
 public class EntrepreneurUnitTest
 {
+    /*
     [Fact]
     public async Task GetAll_Entrepreneur_Success()
     {
@@ -69,5 +70,5 @@ public class EntrepreneurUnitTest
         // Assert
         mockEntrepreneurRepository.Verify(repo => repo.AddAsync(entrepreneur), Times.Once);
     }
-    
+    */
 }

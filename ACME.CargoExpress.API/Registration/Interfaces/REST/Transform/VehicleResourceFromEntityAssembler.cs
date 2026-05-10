@@ -7,6 +7,13 @@ public static class VehicleResourceFromEntityAssembler
 {
     public static VehicleResource ToResourceFromEntity(Vehicle entity)
     {
-        return new VehicleResource(entity.Id, entity.Model, entity.Plate, entity.TractorPlate, entity.MaxLoad, entity.Volume);
+        return new VehicleResource(
+            entity.Id,
+            entity.Model,
+            entity.Plate,
+            entity.TractorPlate,
+            entity.MaxLoad,
+            entity.Volume,
+            entity.EntrepreneurId);
     }
 }

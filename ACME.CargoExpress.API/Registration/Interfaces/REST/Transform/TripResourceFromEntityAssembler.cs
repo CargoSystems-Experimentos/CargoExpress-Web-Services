@@ -7,6 +7,14 @@ public static class TripResourceFromEntityAssembler
 {
     public static TripResource ToResourceFromEntity(Trip entity)
     {
-        return new TripResource(entity.Id, entity.Name, entity.CargoData, entity.TripData, entity.DriverId, entity.VehicleId, entity.ClientId, entity.EntrepreneurId);
+        return new TripResource(
+            entity.Id,
+            entity.Name,
+            entity.CargoData,
+            entity.TripData,
+            entity.DriverId,
+            entity.VehicleId,
+            entity.ClientId,
+            entity.EntrepreneurId);
     }
 }

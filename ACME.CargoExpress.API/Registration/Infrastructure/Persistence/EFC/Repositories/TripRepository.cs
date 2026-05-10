@@ -16,7 +16,7 @@ public class TripRepository : BaseRepository<Trip>, ITripRepository
     {
         _context = context;
     }
-    
+
     public async Task<IEnumerable<Driver>> FindDriversByEntrepreneurIdAsync(int entrepreneurId)
     {
         return await _context.Trips
@@ -25,6 +25,7 @@ public class TripRepository : BaseRepository<Trip>, ITripRepository
             .Distinct()
             .ToListAsync();
     }
+
     public async Task<IEnumerable<Vehicle>> FindVehiclesByEntrepreneurIdAsync(int entrepreneurId)
     {
         return await _context.Trips

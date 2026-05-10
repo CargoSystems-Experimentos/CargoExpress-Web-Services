@@ -13,7 +13,6 @@ public static class EntrepreneurResourceFromEntityAssembler
            entity.Name,
            entity.Phone,
            entity.Ruc,
-           entity.Address,
            entity.UserId, 
            entity.LogoImage);
    }

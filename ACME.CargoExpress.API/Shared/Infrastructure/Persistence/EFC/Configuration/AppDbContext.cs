@@ -42,6 +42,11 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Driver>().Property(d => d.Dni).IsRequired().HasMaxLength(8);
         builder.Entity<Driver>().Property(d => d.License).IsRequired().HasMaxLength(10);
         builder.Entity<Driver>().Property(d => d.ContactNumber).IsRequired().HasMaxLength(9);
+        builder.Entity<Driver>()
+            .HasOne(d => d.Entrepreneur)
+            .WithMany(e => e.Drivers)
+            .HasForeignKey(d => d.EntrepreneurId)
+            .HasPrincipalKey(e => e.Id);
         
         //Vehicle Table
         builder.Entity<Vehicle>().HasKey(v => v.Id);
@@ -50,10 +55,17 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Vehicle>().Property(v => v.TractorPlate).IsRequired().HasMaxLength(100);
         builder.Entity<Vehicle>().Property(v => v.MaxLoad).IsRequired().HasPrecision(6, 2);
         builder.Entity<Vehicle>().Property(v => v.Volume).IsRequired().HasPrecision(6, 2);
+        builder.Entity<Vehicle>()
+            .HasOne(v => v.Entrepreneur)
+            .WithMany(e => e.Vehicles)
+            .HasForeignKey(v => v.EntrepreneurId)
+            .HasPrincipalKey(e => e.Id);
+        
         
         //Trip Table
         builder.Entity<Trip>().HasKey(t => t.Id);
         builder.Entity<Trip>().Property(t => t.Id).IsRequired().ValueGeneratedOnAdd();
+        
         builder.Entity<Trip>().OwnsOne(p => p.Name,
             n =>
             {
@@ -110,18 +122,6 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         
         //Trips Table Relationships
         builder.Entity<Trip>()
-            .HasOne(t => t.Driver)
-            .WithMany(d => d.Trips)
-            .HasForeignKey(t => t.DriverId)
-            .HasPrincipalKey(d => d.Id);
-        
-        builder.Entity<Trip>()
-            .HasOne(t => t.Vehicle)
-            .WithMany(v => v.Trips)
-            .HasForeignKey(t => t.VehicleId)
-            .HasPrincipalKey(v => v.Id);
-        
-        builder.Entity<Trip>()
             .HasOne(t => t.Client)
             .WithMany(c => c.Trips)
             .HasForeignKey(t => t.ClientId)
@@ -132,6 +132,18 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .WithMany(e => e.Trips)
             .HasForeignKey(t => t.EntrepreneurId)
             .HasPrincipalKey(e => e.Id);
+        
+        builder.Entity<Trip>()
+            .HasOne(t => t.Driver)
+            .WithMany(d => d.Trips)
+            .HasForeignKey(t => t.DriverId)
+            .HasPrincipalKey(d => d.Id);
+
+        builder.Entity<Trip>()
+            .HasOne(t => t.Vehicle)
+            .WithMany(v => v.Trips)
+            .HasForeignKey(t => t.VehicleId)
+            .HasPrincipalKey(v => v.Id);
         
         
         //Expenses Table Relationships

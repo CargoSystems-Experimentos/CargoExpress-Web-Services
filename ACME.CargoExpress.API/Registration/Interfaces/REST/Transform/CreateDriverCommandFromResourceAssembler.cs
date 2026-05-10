@@ -7,6 +7,6 @@ public static class CreateDriverCommandFromResourceAssembler
 {
     public static CreateDriverCommand ToCommandFromResource(CreateDriverResource resource)
     {
-        return new CreateDriverCommand(resource.Name, resource.Dni, resource.License, resource.ContactNumber);
+        return new CreateDriverCommand(resource.Name, resource.Dni, resource.License, resource.ContactNumber, resource.EntrepreneurId);
     }
 }

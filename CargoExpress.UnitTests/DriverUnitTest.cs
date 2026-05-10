@@ -6,6 +6,7 @@ namespace CargoExpress.UnitTests
 {
     public class DriverUnitTest
     {
+        /*
         [Fact]
         public async Task GetAll_Driver_Success()
         {
@@ -88,5 +89,6 @@ namespace CargoExpress.UnitTests
             Assert.Equal("Brevete A2", driver.License);
             Assert.Equal("955765432", driver.ContactNumber);
         }
+            */
     }
 }

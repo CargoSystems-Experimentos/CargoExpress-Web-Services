@@ -12,6 +12,17 @@ public class EntrepreneurCommandService(IEntrepreneurRepository entrepreneurRepo
 {
     public async Task<Entrepreneur?> Handle(CreateEntrepreneurCommand command)
     {
+        // Validaciones
+        if (string.IsNullOrWhiteSpace(command.Phone) || command.Phone.Length != 9)
+        {
+            throw new ArgumentException("Phone must have exactly 9 characters.");
+        }
+        
+        if (string.IsNullOrWhiteSpace(command.Ruc) || command.Ruc.Length != 11)
+        {
+            throw new ArgumentException("Ruc must have exactly 11 characters.");
+        }
+        
         var user = await userRepository.FindByIdAsync(command.UserId);
         if (user == null)
         {
@@ -34,6 +45,17 @@ public class EntrepreneurCommandService(IEntrepreneurRepository entrepreneurRepo
     
     public async Task<Entrepreneur?> Handle(UpdateEntrepreneurCommand command)
     {
+        // Validaciones
+        if (string.IsNullOrWhiteSpace(command.Phone) || command.Phone.Length != 9)
+        {
+            throw new ArgumentException("Phone must have exactly 9 characters.");
+        }
+        
+        if (string.IsNullOrWhiteSpace(command.Ruc) || command.Ruc.Length != 11)
+        {
+            throw new ArgumentException("Ruc must have exactly 11 characters.");
+        }
+        
         var entrepreneur = await entrepreneurRepository.FindByIdAsync(command.EntrepreneurId);
         if (entrepreneur == null)
         {

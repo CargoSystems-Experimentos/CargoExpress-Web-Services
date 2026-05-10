@@ -5,7 +5,7 @@ using ACME.CargoExpress.API.User.Domain.Model.Aggregates;
 
 namespace ACME.CargoExpress.API.Registration.Domain.Repositories;
 
-public interface ITripRepository: IBaseRepository<Trip>
+public interface ITripRepository : IBaseRepository<Trip>
 {
     Task<IEnumerable<Driver>> FindDriversByEntrepreneurIdAsync(int entrepreneurId);
     Task<IEnumerable<Vehicle>> FindVehiclesByEntrepreneurIdAsync(int entrepreneurId);

@@ -2,4 +2,12 @@
 
 namespace ACME.CargoExpress.API.Registration.Interfaces.REST.Resources;
 
-public record TripResource(int Id, Name Name, CargoData CargoData, TripData TripData, int DriverId, int VehicleId, int ClientId, int EntrepreneurId);
+public record TripResource(
+    int Id,
+    Name Name,
+    CargoData CargoData,
+    TripData TripData,
+    int DriverId,
+    int VehicleId,
+    int ClientId,
+    int EntrepreneurId);
