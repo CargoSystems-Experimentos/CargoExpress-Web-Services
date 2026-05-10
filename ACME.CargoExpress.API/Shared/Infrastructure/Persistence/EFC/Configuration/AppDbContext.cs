@@ -97,6 +97,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<OngoingTrip>().Property(ot => ot.Longitude).IsRequired();
         builder.Entity<OngoingTrip>().Property(ot => ot.Speed).IsRequired();
         builder.Entity<OngoingTrip>().Property(ot => ot.Distance).IsRequired();
+        builder.Entity<OngoingTrip>().Property(ot => ot.State).IsRequired().HasMaxLength(20);
         
         //Trips Table Relationships
         builder.Entity<Trip>()

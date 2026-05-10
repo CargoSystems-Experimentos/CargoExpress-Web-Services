@@ -25,7 +25,7 @@ public class OngoingTripsController(IOngoingTripCommandService ongoingTripComman
         catch (InvalidOperationException e)
         {
             // Handle the case where an Expense with the same TripId already exists
-            return BadRequest(new {message = "An Expense with the same TripId already exists."});
+            return BadRequest(new {message = "An OnGoingTrip with the same TripId already exists."});
         }
         catch (Exception e)
         {

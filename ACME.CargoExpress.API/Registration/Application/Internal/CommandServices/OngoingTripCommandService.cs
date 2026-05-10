@@ -3,7 +3,6 @@ using ACME.CargoExpress.API.Registration.Domain.Model.Entities;
 using ACME.CargoExpress.API.Registration.Domain.Repositories;
 using ACME.CargoExpress.API.Registration.Domain.Services;
 using ACME.CargoExpress.API.Shared.Domain.Repositories;
-using ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects;
 namespace ACME.CargoExpress.API.Registration.Application.Internal.CommandServices;
 
 public class OngoingTripCommandService(IOngoingTripRepository ongoingTripRepository, ITripRepository tripRepository, IUnitOfWork unitOfWork)

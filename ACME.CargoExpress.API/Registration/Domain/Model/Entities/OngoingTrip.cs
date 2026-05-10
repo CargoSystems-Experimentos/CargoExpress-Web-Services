@@ -1,6 +1,6 @@
 ﻿using ACME.CargoExpress.API.Registration.Domain.Model.Aggregates;
 using ACME.CargoExpress.API.Registration.Domain.Model.Commands;
-using ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects;
+// removed enum value object, using string for State now
 
 namespace ACME.CargoExpress.API.Registration.Domain.Model.Entities;
 
@@ -13,7 +13,7 @@ public class OngoingTrip
         Speed = 0;
         Distance = 0;
         Trip = new Trip();
-        State = OngoingTripState.PENDIENTE;
+        State = "PENDIENTE";
     }
 
     public OngoingTrip(float latitude, float longitude, int speed, int distance, int tripId, Trip trip)
@@ -24,7 +24,7 @@ public class OngoingTrip
         Distance = distance;
         TripId = tripId;
         Trip = trip;
-        State = OngoingTripState.PENDIENTE;
+        State = "PENDIENTE";
     }
 
     public OngoingTrip(CreateOngoingTripCommand command, Trip trip)
@@ -34,7 +34,8 @@ public class OngoingTrip
         Speed = command.Speed;
         Distance = command.Distance;
         Trip = trip;
-        State = command.State;
+        var s = command.State?.ToString();
+        State = string.IsNullOrWhiteSpace(s) ? "PENDIENTE" : s!;
     }
 
     public int Id { get; set; }
@@ -47,6 +48,6 @@ public class OngoingTrip
     public int TripId { get; set; }
     public Trip Trip { get; }
 
-    // nuevo estado
-    public OngoingTripState State { get; set; }
+    // nuevo estado (string)
+    public string State { get; set; }
 }
