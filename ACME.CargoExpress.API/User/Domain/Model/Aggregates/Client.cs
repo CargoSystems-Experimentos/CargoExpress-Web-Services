@@ -10,18 +10,16 @@ public class Client
     {
         Name = string.Empty;
         Phone = string.Empty;
-        Ruc = string.Empty;
-        Address = string.Empty;
+        Dni = string.Empty;  // CAMBIO: Ruc → Dni
         User = new IAM.Domain.Model.Aggregates.User();
         Trips = new List<Trip>();
     }
 
-    public Client(string name, string phone, string ruc, string address, int userId, IAM.Domain.Model.Aggregates.User user)
+    public Client(string name, string phone, string dni, int userId, IAM.Domain.Model.Aggregates.User user)
     {
         Name = name;
         Phone = phone;
-        Ruc = ruc;
-        Address = address;
+        Dni = dni;  // CAMBIO
         UserId = userId;
         User = user;
         Trips = new List<Trip>();
@@ -31,8 +29,7 @@ public class Client
     {
         Name = command.Name;
         Phone = command.Phone;
-        Ruc = command.Ruc;
-        Address = command.Address;
+        Dni = command.Dni;  // CAMBIO
         UserId = command.UserId;
         User = user;
         Trips = new List<Trip>();
@@ -42,20 +39,15 @@ public class Client
     {
         Name = command.Name;
         Phone = command.Phone;
-        Ruc = command.Ruc;
-        Address = command.Address;
+        Dni = command.Dni;  // CAMBIO
     }
-    
     
     public int Id { get; set; }
     public string Name { get; set; }
     public string Phone { get; set; }
-    public string Ruc { get; set; } 
-    public string Address { get; set; }
+    public string Dni { get; set; }  // CAMBIO: Ruc → Dni, elimina Address
     public IAM.Domain.Model.Aggregates.User User { get; set; }
     public int UserId { get; set; }
     
-    
     public ICollection<Trip> Trips { get; }
-    
 }

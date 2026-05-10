@@ -4198,11 +4198,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Proyectos\\CargoExpress-Backend-main\\CargoExpress.UnitTests\\CargoExpress.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\CargoExpress.UnitTests\\CargoExpress.UnitTests.csproj",
       "projectName": "CargoExpress.UnitTests",
-      "projectPath": "E:\\Proyectos\\CargoExpress-Backend-main\\CargoExpress.UnitTests\\CargoExpress.UnitTests.csproj",
+      "projectPath": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\CargoExpress.UnitTests\\CargoExpress.UnitTests.csproj",
       "packagesPath": "C:\\Users\\Adolfo PC\\.nuget\\packages\\",
-      "outputPath": "E:\\Proyectos\\CargoExpress-Backend-main\\CargoExpress.UnitTests\\obj\\",
+      "outputPath": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\CargoExpress.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Adolfo PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -4217,8 +4217,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Proyectos\\CargoExpress-Backend-main\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj": {
-              "projectPath": "E:\\Proyectos\\CargoExpress-Backend-main\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj"
+            "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj": {
+              "projectPath": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj"
             }
           }
         }

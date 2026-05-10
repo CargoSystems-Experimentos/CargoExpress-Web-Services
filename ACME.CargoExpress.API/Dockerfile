@@ -1,25 +1,20 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+﻿# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["ACME.CargoExpress.API.csproj", "."]
-RUN dotnet restore "ACME.CargoExpress.API.csproj"
-COPY . .
-WORKDIR "/src"
-RUN dotnet build "ACME.CargoExpress.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "ACME.CargoExpress.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+
+COPY *.sln .
+COPY **/*.csproj ./
+RUN dotnet restore
+
+COPY . .
+RUN dotnet publish -c Release -o /out
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+COPY --from=build /out .
+
+ENV ASPNETCORE_URLS=http://+:${PORT:-8080}
+EXPOSE ${PORT:-8080}
+
 ENTRYPOINT ["dotnet", "ACME.CargoExpress.API.dll"]

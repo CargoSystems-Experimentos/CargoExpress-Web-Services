@@ -4189,11 +4189,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Proyectos\\CargoExpress-Backend-main\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj",
+      "projectUniqueName": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj",
       "projectName": "ACME.CargoExpress.API",
-      "projectPath": "E:\\Proyectos\\CargoExpress-Backend-main\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj",
+      "projectPath": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\ACME.CargoExpress.API\\ACME.CargoExpress.API.csproj",
       "packagesPath": "C:\\Users\\Adolfo PC\\.nuget\\packages\\",
-      "outputPath": "E:\\Proyectos\\CargoExpress-Backend-main\\ACME.CargoExpress.API\\obj\\",
+      "outputPath": "C:\\Users\\Adolfo PC\\Documents\\GitHub\\CargoExpress-Web-Services\\ACME.CargoExpress.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Adolfo PC\\AppData\\Roaming\\NuGet\\NuGet.Config"

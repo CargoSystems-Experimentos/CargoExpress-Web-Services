@@ -10,8 +10,7 @@ public static class CreateClientCommandFromResourceAssembler
         return new CreateClientCommand(
             resource.Name,
             resource.Phone,
-            resource.Ruc,
-            resource.Address,
+            resource.Dni,
             resource.UserId);
     }
     

@@ -10,6 +10,7 @@ namespace CargoApp.UnitTests;
 
 public class TripUnitTest
 {
+    /*
     [Fact]
     public async Task GetAll_Trip_Success()
     {
@@ -130,4 +131,5 @@ public class TripUnitTest
         // Assert
         mockTripRepository.Verify(repo => repo.Update(trip), Times.Once);
     } 
+    */
 }

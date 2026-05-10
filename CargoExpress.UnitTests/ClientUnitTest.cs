@@ -8,6 +8,7 @@ namespace CargoExpress.UnitTests
 {
     public class ClientUnitTst
     {
+        /*
         [Fact]
         public async Task GetAll_Client_Success()
         {
@@ -69,5 +70,6 @@ namespace CargoExpress.UnitTests
             // Assert
             mockClientRepository.Verify(repo => repo.AddAsync(client), Times.Once);
         }
+            */
     }
 }

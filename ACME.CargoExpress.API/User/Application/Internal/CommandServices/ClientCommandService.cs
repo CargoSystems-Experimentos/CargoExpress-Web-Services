@@ -12,6 +12,17 @@ public class ClientCommandService(IClientRepository clientRepository, IUserRepos
 {
     public async Task<Client?> Handle(CreateClientCommand command)
     {
+        // Validaciones
+        if (string.IsNullOrWhiteSpace(command.Phone) || command.Phone.Length != 9)
+        {
+            throw new ArgumentException("Phone must have exactly 9 characters.");
+        }
+        
+        if (string.IsNullOrWhiteSpace(command.Dni) || command.Dni.Length != 8)
+        {
+            throw new ArgumentException("Dni must have exactly 8 characters.");
+        }
+        
         var user = await userRepository.FindByIdAsync(command.UserId);
         if (user == null)
         {
@@ -34,6 +45,17 @@ public class ClientCommandService(IClientRepository clientRepository, IUserRepos
     
     public async Task<Client?> Handle(UpdateClientCommand command)
     {
+        // Validaciones
+        if (string.IsNullOrWhiteSpace(command.Phone) || command.Phone.Length != 9)
+        {
+            throw new ArgumentException("Phone must have exactly 9 characters.");
+        }
+        
+        if (string.IsNullOrWhiteSpace(command.Dni) || command.Dni.Length != 8)
+        {
+            throw new ArgumentException("Dni must have exactly 8 characters.");
+        }
+        
         var client = await clientRepository.FindByIdAsync(command.ClientId);
         if (client == null)
         {
