@@ -10,30 +10,30 @@ public class Alert
         Title= string.Empty;
         Description = string.Empty;
         Date = DateTime.Now;
-        Trip = new Trip();
+        OngoingTrip = new OngoingTrip();
     }
     
-    public Alert(string title, string description, DateTime date, int tripId, Trip trip)
+    public Alert(string title, string description, DateTime date, int ongoingTripId, OngoingTrip ongoingTrip)
     {
         Title = title;
         Description = description;
         Date = date;
-        TripId = tripId;
-        Trip = trip;
+        OngoingTripId = ongoingTripId;
+        OngoingTrip = ongoingTrip;
     }
 
-    public Alert(CreateAlertCommand command, Trip trip)
+    public Alert(CreateAlertCommand command, OngoingTrip ongoingTrip)
     {
         Title = command.Title;
         Description = command.Description;
         Date = command.Date;
-        Trip = trip;
+        OngoingTrip = ongoingTrip;
     }
     
     public int Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime Date { get; set; }
-    public int TripId { get; set; }
-    public Trip Trip { get; }
+    public int OngoingTripId { get; set; }
+    public OngoingTrip OngoingTrip { get; }
 }

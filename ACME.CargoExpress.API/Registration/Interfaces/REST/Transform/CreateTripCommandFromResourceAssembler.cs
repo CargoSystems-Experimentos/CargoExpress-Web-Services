@@ -18,6 +18,7 @@ public static class CreateTripCommandFromResourceAssembler
             resource.DriverId,
             resource.VehicleId,
             resource.ClientId,
-            resource.EntrepreneurId);
+            resource.EntrepreneurId,
+            resource.EvidenceImg);
     }
 }

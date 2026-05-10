@@ -8,7 +8,7 @@ using ACME.CargoExpress.API.User.Domain.Model.Queries;
 
 namespace ACME.CargoExpress.API.Registration.Application.Internal.QueryServices;
 
-public class TripQueryService(ITripRepository tripRepository, IEvidenceRepository evidenceRepository, IAlertRepository alertRepository, IOngoingTripRepository ongoingTripRepository, IExpenseRepository expenseRepository)
+public class TripQueryService(ITripRepository tripRepository, IAlertRepository alertRepository, IOngoingTripRepository ongoingTripRepository, IExpenseRepository expenseRepository)
     : ITripQueryService
 {
     public async Task<Trip?> Handle(GetTripByIdQuery query)
@@ -20,19 +20,15 @@ public class TripQueryService(ITripRepository tripRepository, IEvidenceRepositor
     {
         return await tripRepository.ListAsync();
     }
-    public async Task<Evidence?> Handle(GetEvidencesByTripIdQuery query)
-    {
-        return await evidenceRepository.FindByTripIdAsync(query.TripId);
-    }
     
     public async Task<Expense?> Handle(GetExpensesByTripIdQuery query)
     {
         return await expenseRepository.FindByTripIdAsync(query.TripId);
     }
     
-    public async Task<IEnumerable<Alert>> Handle(GetAlertsByTripIdQuery query)
+    public async Task<IEnumerable<Alert>> Handle(GetAlertsByOngoingTripIdQuery query)
     { 
-        return await alertRepository.FindByTripIdAsync(query.TripId);
+        return await alertRepository.FindByOngoingTripIdAsync(query.OngoingTripId);
     }
     
     public async Task<OngoingTrip?> Handle(GetOngGoingTripByIdQuery query)

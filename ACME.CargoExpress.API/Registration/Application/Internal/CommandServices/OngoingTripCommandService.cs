@@ -3,6 +3,7 @@ using ACME.CargoExpress.API.Registration.Domain.Model.Entities;
 using ACME.CargoExpress.API.Registration.Domain.Repositories;
 using ACME.CargoExpress.API.Registration.Domain.Services;
 using ACME.CargoExpress.API.Shared.Domain.Repositories;
+using ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects;
 namespace ACME.CargoExpress.API.Registration.Application.Internal.CommandServices;
 
 public class OngoingTripCommandService(IOngoingTripRepository ongoingTripRepository, ITripRepository tripRepository, IUnitOfWork unitOfWork)
@@ -10,13 +11,12 @@ public class OngoingTripCommandService(IOngoingTripRepository ongoingTripReposit
 {
     public async Task<OngoingTrip?> Handle(CreateOngoingTripCommand command)
     {
-        // Additional validation to check if the trip exists
         var trip = await tripRepository.FindByIdAsync(command.TripId);
         if (trip == null)
         {
             throw new ArgumentException("TripId not found.");
         }
-        // Check if an Expense with the same TripId already exists
+
         var existingExpense = await ongoingTripRepository.FindByTripIdAsync(command.TripId);
         if (existingExpense != null)
         {
@@ -36,11 +36,12 @@ public class OngoingTripCommandService(IOngoingTripRepository ongoingTripReposit
         {
             return null;
         }
-        //Update the ongoingTrip information
+        // Update the ongoingTrip information
         ongoingTrip.Latitude = command.Latitude;
         ongoingTrip.Longitude = command.Longitude;
         ongoingTrip.Speed = command.Speed;
         ongoingTrip.Distance = command.Distance;
+        ongoingTrip.State = command.State;
         
         await unitOfWork.CompleteAsync();
         return ongoingTrip;

@@ -10,11 +10,16 @@ public static class TripResourceFromEntityAssembler
         return new TripResource(
             entity.Id,
             entity.Name,
-            entity.CargoData,
-            entity.TripData,
+            entity.Type,
+            entity.Weight,
+            entity.LoadLocation,
+            entity.LoadDate,
+            entity.UnloadLocation,
+            entity.UnloadDate,
             entity.DriverId,
             entity.VehicleId,
             entity.ClientId,
-            entity.EntrepreneurId);
+            entity.EntrepreneurId,
+            entity.EvidenceImg);
     }
 }

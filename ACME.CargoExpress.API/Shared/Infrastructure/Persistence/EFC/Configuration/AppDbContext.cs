@@ -24,7 +24,6 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<User.Domain.Model.Entities.Configuration> Configurations { get; set; }
     public DbSet<Trip> Trips { get; set; }
     public DbSet<Expense> Expenses { get; set; }
-    public DbSet<Evidence> Evidences { get; set; }
     public DbSet<OngoingTrip> OngoingTrips { get; set; }
     public DbSet<Alert> Alerts { get; set; }
 
@@ -65,30 +64,14 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         //Trip Table
         builder.Entity<Trip>().HasKey(t => t.Id);
         builder.Entity<Trip>().Property(t => t.Id).IsRequired().ValueGeneratedOnAdd();
-        
-        builder.Entity<Trip>().OwnsOne(p => p.Name,
-            n =>
-            {
-                n.WithOwner().HasForeignKey("Id");
-                n.Property(p => p.TripName).HasColumnName("Name");
-            });
-        builder.Entity<Trip>().OwnsOne(p => p.CargoData,
-            c =>
-            {
-                c.WithOwner().HasForeignKey("Id");
-                c.Property(p => p.Type).HasColumnName("Type");
-                c.Property(p => p.Weight).HasColumnName("Weight");
-            });
-        
-        builder.Entity<Trip>().OwnsOne(p => p.TripData,
-            c =>
-            {
-                c.WithOwner().HasForeignKey("Id");
-                c.Property(p => p.LoadLocation).HasColumnName("LoadLocation");
-                c.Property(p => p.LoadDate).HasColumnName("LoadDate");
-                c.Property(p => p.UnloadLocation).HasColumnName("UnloadLocation");
-                c.Property(p => p.UnloadDate).HasColumnName("UnloadDate");
-            });
+        builder.Entity<Trip>().Property(t => t.Name).IsRequired().HasMaxLength(100);
+        builder.Entity<Trip>().Property(t => t.Type).IsRequired().HasMaxLength(50);
+        builder.Entity<Trip>().Property(t => t.Weight).IsRequired();
+        builder.Entity<Trip>().Property(t => t.LoadLocation).IsRequired().HasMaxLength(100);
+        builder.Entity<Trip>().Property(t => t.LoadDate).IsRequired();
+        builder.Entity<Trip>().Property(t => t.UnloadLocation).IsRequired().HasMaxLength(100);
+        builder.Entity<Trip>().Property(t => t.UnloadDate).IsRequired();
+        builder.Entity<Trip>().Property(t => t.EvidenceImg);
         
         //Expense Table
         builder.Entity<Expense>().HasKey(e => e.Id);
@@ -99,11 +82,6 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Expense>().Property(e => e.ViaticsDescription).IsRequired();
         builder.Entity<Expense>().Property(e => e.TollsAmount).IsRequired();
         builder.Entity<Expense>().Property(e => e.TollsDescription).IsRequired();
-        
-        //Evidence Table
-        builder.Entity<Evidence>().HasKey(ev => ev.Id);
-        builder.Entity<Evidence>().Property(ev => ev.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Evidence>().Property(ev => ev.Link).IsRequired().HasMaxLength(200);
         
         //Alert Table
         builder.Entity<Alert>().HasKey(a => a.Id);
@@ -153,19 +131,12 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
             .HasForeignKey<Expense>(e => e.TripId)
             .HasPrincipalKey<Trip>(t => t.Id);
         
-        //Evidences Table Relationships
-        builder.Entity<Evidence>()
-            .HasOne(ev => ev.Trip)
-            .WithOne(t => t.Evidence)
-            .HasForeignKey<Evidence>(ev => ev.TripId)
-            .HasPrincipalKey<Trip>(t => t.Id);
-        
         //Alerts Table Relationships
         builder.Entity<Alert>()
-            .HasOne(a => a.Trip)
-            .WithMany(t => t.Alerts)
-            .HasForeignKey(a => a.TripId)
-            .HasPrincipalKey(t => t.Id);
+            .HasOne(a => a.OngoingTrip)
+            .WithMany()
+            .HasForeignKey(a => a.OngoingTripId)
+            .HasPrincipalKey(ot => ot.Id);
         
         //OngoingTrips Table Relationships
         builder.Entity<OngoingTrip>()

@@ -40,6 +40,9 @@ public class TripCommandService(
             throw new ArgumentException("Vehicle does not belong to the given EntrepreneurId.");
 
         var trip = new Trip(command, driver, vehicle, client, entrepreneur);
+
+        trip.EvidenceImg = command.EvidenceImg;
+
         await tripRepository.AddAsync(trip);
         await unitOfWork.CompleteAsync();
         return trip;
@@ -71,23 +74,22 @@ public class TripCommandService(
         if (vehicle.EntrepreneurId != entrepreneur.Id)
             throw new ArgumentException("Vehicle does not belong to the given EntrepreneurId.");
 
-        trip.Name = new ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects.Name(command.Name);
-        trip.CargoData = new ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects.CargoData(command.Type, command.Weight);
-        trip.TripData = new ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects.TripData(
-            command.LoadLocation,
-            command.LoadDate,
-            command.UnloadLocation,
-            command.UnloadDate);
-
+        trip.Name = command.Name;
+        trip.Type = command.Type;
+        trip.Weight = command.Weight;
+        trip.LoadLocation = command.LoadLocation;
+        trip.LoadDate = command.LoadDate;
+        trip.UnloadLocation = command.UnloadLocation;
+        trip.UnloadDate = command.UnloadDate;
         trip.DriverId = driver.Id;
         trip.VehicleId = vehicle.Id;
         trip.ClientId = command.ClientId;
         trip.EntrepreneurId = command.EntrepreneurId;
-
         trip.Driver = driver;
         trip.Vehicle = vehicle;
         trip.Client = client;
         trip.Entrepreneur = entrepreneur;
+        trip.EvidenceImg = command.EvidenceImg;
 
         await unitOfWork.CompleteAsync();
         return trip;

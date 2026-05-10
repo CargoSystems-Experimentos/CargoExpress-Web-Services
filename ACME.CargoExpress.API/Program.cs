@@ -128,7 +128,6 @@ builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<ITripRepository, TripRepository>();
 builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
-builder.Services.AddScoped<IEvidenceRepository, EvidenceRepository>();
 builder.Services.AddScoped<IAlertRepository, AlertRepository>();
 builder.Services.AddScoped<IOngoingTripRepository, OngoingTripRepository>();
 //Commands
@@ -136,7 +135,6 @@ builder.Services.AddScoped<IDriverCommandService, DriverCommandService>();
 builder.Services.AddScoped<IVehicleCommandService, VehicleCommandService>();
 builder.Services.AddScoped<ITripCommandService, TripCommandService>();
 builder.Services.AddScoped<IExpenseCommandService, ExpenseCommandService>();
-builder.Services.AddScoped<IEvidenceCommandService, EvidenceCommandService>();
 builder.Services.AddScoped<IAlertCommandService, AlertCommandService>();
 builder.Services.AddScoped<IOngoingTripCommandService, OngoingTripCommandService>();
 //Queries
@@ -144,7 +142,6 @@ builder.Services.AddScoped<IDriverQueryService, DriverQueryService>();
 builder.Services.AddScoped<IVehicleQueryService, VehicleQueryService>();
 builder.Services.AddScoped<ITripQueryService, TripQueryService>();
 builder.Services.AddScoped<IExpenseQueryService, ExpenseQueryService>();
-builder.Services.AddScoped<IEvidenceQueryService, EvidenceQueryService>();
 builder.Services.AddScoped<IAlertQueryService, AlertQueryService>();
 builder.Services.AddScoped<IOngoingTripQueryService, OngoingTripQueryService>();
 // User Bounded Context Injection Configuration

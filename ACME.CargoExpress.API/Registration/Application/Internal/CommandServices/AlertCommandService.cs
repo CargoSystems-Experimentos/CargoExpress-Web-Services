@@ -6,19 +6,18 @@ using ACME.CargoExpress.API.Shared.Domain.Repositories;
 
 namespace ACME.CargoExpress.API.Registration.Application.Internal.CommandServices;
 
-public class AlertCommandService(IAlertRepository alertRepository, ITripRepository tripRepository, IUnitOfWork unitOfWork)
+public class AlertCommandService(IAlertRepository alertRepository, IOngoingTripRepository ongoingTripRepository, IUnitOfWork unitOfWork)
     :IAlertCommandService
 {
     public async Task<Alert?> Handle(CreateAlertCommand command)
     {
-        // Additional validation to check if the trip exists
-        var trip = await tripRepository.FindByIdAsync(command.TripId);
-        if (trip == null)
+        var ongoingTrip = await ongoingTripRepository.FindByIdAsync(command.OngoingTripId);
+        if (ongoingTrip == null)
         {
-            throw new ArgumentException("TripId not found.");
+            throw new ArgumentException("OngoingTripId not found.");
         }
 
-        var alert = new Alert(command, trip);
+        var alert = new Alert(command, ongoingTrip);
         await alertRepository.AddAsync(alert);
         await unitOfWork.CompleteAsync();
         return alert;

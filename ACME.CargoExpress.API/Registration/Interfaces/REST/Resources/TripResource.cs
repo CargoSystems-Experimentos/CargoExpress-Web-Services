@@ -1,13 +1,16 @@
-﻿using ACME.CargoExpress.API.Registration.Domain.Model.ValueObjects;
-
-namespace ACME.CargoExpress.API.Registration.Interfaces.REST.Resources;
+﻿namespace ACME.CargoExpress.API.Registration.Interfaces.REST.Resources;
 
 public record TripResource(
     int Id,
-    Name Name,
-    CargoData CargoData,
-    TripData TripData,
+    string Name,
+    string Type,
+    int Weight,
+    string LoadLocation,
+    DateTime LoadDate,
+    string UnloadLocation,
+    DateTime UnloadDate,
     int DriverId,
     int VehicleId,
     int ClientId,
-    int EntrepreneurId);
+    int EntrepreneurId,
+    string EvidenceImg);

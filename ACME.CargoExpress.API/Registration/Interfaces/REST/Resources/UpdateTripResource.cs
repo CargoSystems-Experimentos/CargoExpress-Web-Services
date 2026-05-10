@@ -11,4 +11,5 @@ public record UpdateTripResource(
     int DriverId,
     int VehicleId,
     int ClientId,
-    int EntrepreneurId);
+    int EntrepreneurId,
+    string EvidenceImg);
