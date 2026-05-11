@@ -30,13 +30,35 @@ public class UserCommandService(
      */
     public async Task<(Domain.Model.Aggregates.User user, string token)> Handle(SignInCommand command)
     {
-        var user = await userRepository.FindByUsernameAsync(command.Username);
+        var normalizedUsername = command.Username.Trim().ToLowerInvariant();
+        var user = await userRepository.FindByUsernameAsync(normalizedUsername);
 
         if (user == null || !hashingService.VerifyPassword(command.Password, user.PasswordHash))
             throw new Exception("Invalid username or password");
 
         var token = tokenService.GenerateToken(user);
 
+        return (user, token);
+    }
+
+    public async Task<(Domain.Model.Aggregates.User user, string token)> HandleGoogleSignIn(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new ArgumentException("Google email is required");
+
+        var normalizedEmail = email.Trim().ToLowerInvariant();
+        var user = await userRepository.FindByUsernameAsync(normalizedEmail);
+
+        if (user == null)
+        {
+            var randomPassword = Guid.NewGuid().ToString("N");
+            var hashedPassword = hashingService.HashPassword(randomPassword);
+            user = new Domain.Model.Aggregates.User(normalizedEmail, hashedPassword);
+            await userRepository.AddAsync(user);
+            await unitOfWork.CompleteAsync();
+        }
+
+        var token = tokenService.GenerateToken(user);
         return (user, token);
     }
 
@@ -49,11 +71,13 @@ public class UserCommandService(
      */
     public async Task Handle(SignUpCommand command)
     {
-        if (userRepository.ExistsByUsername(command.Username))
-            throw new Exception($"Username {command.Username} is already taken");
+        var normalizedUsername = command.Username.Trim().ToLowerInvariant();
+
+        if (userRepository.ExistsByUsername(normalizedUsername))
+            throw new Exception($"Username {normalizedUsername} is already taken");
 
         var hashedPassword = hashingService.HashPassword(command.Password);
-        var user = new Domain.Model.Aggregates.User(command.Username, hashedPassword);
+        var user = new Domain.Model.Aggregates.User(normalizedUsername, hashedPassword);
         try
         {
             await userRepository.AddAsync(user);

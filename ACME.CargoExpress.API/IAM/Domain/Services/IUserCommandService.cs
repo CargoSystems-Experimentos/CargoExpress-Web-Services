@@ -21,6 +21,8 @@ public interface IUserCommandService
         */
     Task<(Model.Aggregates.User user, string token)> Handle(SignInCommand command);
 
+    Task<(Model.Aggregates.User user, string token)> HandleGoogleSignIn(string email);
+
     /**
         * <summary>
         *     Handle sign up command

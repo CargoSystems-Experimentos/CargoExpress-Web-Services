@@ -6,6 +6,7 @@ using ACME.CargoExpress.API.IAM.Domain.Services;
 using ACME.CargoExpress.API.IAM.Infrastructure.Hashing.BCrypt.Services;
 using ACME.CargoExpress.API.IAM.Infrastructure.Persistence.EFC.Repositories;
 using ACME.CargoExpress.API.IAM.Infrastructure.Pipeline.Middleware.Extensions;
+using ACME.CargoExpress.API.IAM.Infrastructure.Authentication.Google.Services;
 using ACME.CargoExpress.API.IAM.Infrastructure.Tokens.JWT.Configuration;
 using ACME.CargoExpress.API.IAM.Infrastructure.Tokens.JWT.Services;
 using ACME.CargoExpress.API.IAM.Interfaces.ACL;
@@ -47,7 +48,7 @@ builder.Services.AddCors(options =>
 });
 
 // Add Database Connection
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("LocalConnection");
 
 // Configure Database Context and Logging Levels
 builder.Services.AddDbContext<AppDbContext>(
@@ -167,6 +168,7 @@ builder.Services.AddScoped<IUserCommandService, UserCommandService>();
 builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
+builder.Services.AddScoped<IGoogleTokenVerifierService, GoogleTokenVerifierService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
 
 var app = builder.Build();

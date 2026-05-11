@@ -5,6 +5,7 @@ using ACME.CargoExpress.API.User.Domain.Model.Queries;
 using ACME.CargoExpress.API.User.Domain.Services;
 using ACME.CargoExpress.API.User.Interfaces.REST.Resources;
 using ACME.CargoExpress.API.User.Interfaces.REST.Transform;
+using ACME.CargoExpress.API.Shared.Interfaces.ASP.Configuration.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ACME.CargoExpress.API.User.Interfaces.REST;
@@ -17,6 +18,18 @@ public class EntrepreneursController (IEntrepreneurQueryService entrepreneurQuer
     [HttpPost]
     public async Task<IActionResult> CreateEntrepreneur([FromBody] CreateEntrepreneurResource createEntrepreneurResource)
     {
+        if (string.IsNullOrWhiteSpace(createEntrepreneurResource.Name) || createEntrepreneurResource.Name.Length > 100)
+            return BadRequest(new { message = "Name is required and max length is 100" });
+
+        if (!createEntrepreneurResource.Phone.IsDigitsWithLength(9))
+            return BadRequest(new { message = "Phone must have exactly 9 digits" });
+
+        if (!createEntrepreneurResource.Ruc.IsDigitsWithLength(11))
+            return BadRequest(new { message = "Ruc must have exactly 11 digits" });
+
+        if (createEntrepreneurResource.UserId <= 0)
+            return BadRequest(new { message = "UserId must be greater than 0" });
+
         try
         {
             var createEntrepreneurCommand = CreateEntrepreneurCommandFromResourceAssembler.ToCommandFromResource(createEntrepreneurResource);

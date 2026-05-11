@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"Y0QhR6urGYxnMHf75A1P7hNCuU+xARG3b0gX5QKl+oQ=","Source":"ACME.CargoExpress.API","BasePath":"_content/ACME.CargoExpress.API","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "9SYmHkOP4f2PFIO6yuA5kUg4rToegFGixwbABQF5WrY=",
+  "Source": "ACME.CargoExpress.API",
+  "BasePath": "_content/ACME.CargoExpress.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

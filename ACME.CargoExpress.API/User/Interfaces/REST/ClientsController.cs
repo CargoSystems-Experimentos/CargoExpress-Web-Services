@@ -5,6 +5,7 @@ using ACME.CargoExpress.API.User.Domain.Model.Queries;
 using ACME.CargoExpress.API.User.Domain.Services;
 using ACME.CargoExpress.API.User.Interfaces.REST.Resources;
 using ACME.CargoExpress.API.User.Interfaces.REST.Transform;
+using ACME.CargoExpress.API.Shared.Interfaces.ASP.Configuration.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ACME.CargoExpress.API.User.Interfaces.REST;
@@ -17,6 +18,18 @@ public class ClientsController(IClientQueryService clientQueryService, IClientCo
     [HttpPost]
     public async Task<IActionResult> CreateClient([FromBody] CreateClientResource createClientResource)
     {
+        if (string.IsNullOrWhiteSpace(createClientResource.Name) || createClientResource.Name.Length > 100)
+            return BadRequest(new { message = "Name is required and max length is 100" });
+
+        if (!createClientResource.Phone.IsDigitsWithLength(9))
+            return BadRequest(new { message = "Phone must have exactly 9 digits" });
+
+        if (!createClientResource.Dni.IsDigitsWithLength(8))
+            return BadRequest(new { message = "Dni must have exactly 8 digits" });
+
+        if (createClientResource.UserId <= 0)
+            return BadRequest(new { message = "UserId must be greater than 0" });
+
         try
         {
             var createClientCommand = CreateClientCommandFromResourceAssembler.ToCommandFromResource(createClientResource);
