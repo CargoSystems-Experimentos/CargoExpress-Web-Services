@@ -1,9 +1,20 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cd597a3f_002D8d95_002D4e43_002Db68f_002Db4c7e6da0631/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UserIntegrationTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.UserIntegrationTests&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.TripIntegrationTests&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.VehicleIntegrationTests&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.ClientIntegrationTests&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cd597a3f_002D8d95_002D4e43_002Db68f_002Db4c7e6da0631/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UserIntegrationTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.UserIntegrationTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.TripIntegrationTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.VehicleIntegrationTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::328EBFCF-C01C-48DD-96DE-38AB4BD6F80F::net8.0::CargoExpress.IntegrationTests.ClientIntegrationTests&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:AlertUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:ClientUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:DriverUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:EntrepreneurUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:ExpenseUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:OngoingTripUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:TripUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:UserUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+    &lt;ProjectFile&gt;891E7D0F-5899-4643-AD98-F8C4BBC8FC0C/f:VehicleUnitTest.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

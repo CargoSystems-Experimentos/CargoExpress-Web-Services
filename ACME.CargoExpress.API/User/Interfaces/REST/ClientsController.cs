@@ -102,4 +102,15 @@ public class ClientsController(IClientQueryService clientQueryService, IClientCo
         var resources = trips.Select(TripResourceFromEntityAssembler.ToResourceFromEntity);
         return Ok(resources);
     }
+    
+    [HttpGet("dni/{dni}")]
+    public async Task<IActionResult> GetClientByDni([FromRoute] string dni)
+    {
+        var client = await clientQueryService.Handle(new GetClientByDniQuery(dni));
+        if (client == null) 
+            return NotFound(new { message = "Client not found." });
+
+        var resource = ClientResourceFromEntityAssembler.ToResourceFromEntity(client);
+        return Ok(resource);
+    }
 }

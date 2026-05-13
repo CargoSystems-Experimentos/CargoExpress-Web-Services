@@ -1,28 +1,27 @@
 ﻿using ACME.CargoExpress.API.Registration.Domain.Model.Entities;
 using ACME.CargoExpress.API.Registration.Domain.Repositories;
+using ACME.CargoExpress.API.User.Domain.Model.Aggregates;
 using Moq;
 
 namespace CargoExpress.UnitTests;
 
 public class VehicleUnitTest
 {
-    /*
     [Fact]
     public async Task GetAll_Vehicle_Success()
     {
-        // Arrange
-        List<Vehicle> vehicles = new List<Vehicle>
+        var entrepreneur = new Entrepreneur("Empresa 1", "987654321", "20123456789", "logo.png", 1, new ACME.CargoExpress.API.IAM.Domain.Model.Aggregates.User("empresa1@mail.com", "contra1234567"));
+        var vehicles = new List<Vehicle>
         {
-            new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35),
-            new Vehicle("Toyota", "B2C-345", "B2C-346", 6000, 40)
+            new Vehicle("Volkswagen", "ABC-123", "ABC-123", 5000f, 35f, 1, entrepreneur),
+            new Vehicle("Toyota", "BCD-234", "BCD-234", 6000f, 40f, 2, entrepreneur)
         };
+
         var vehicleDataMock = new Mock<IVehicleRepository>();
-        vehicleDataMock.Setup(x => x.ListAsync().Result).Returns(vehicles);
-        
-        // Act
+        vehicleDataMock.Setup(x => x.ListAsync()).ReturnsAsync(vehicles);
+
         var returnedVehicles = await vehicleDataMock.Object.ListAsync();
-        
-        // Assert
+
         vehicleDataMock.Verify(x => x.ListAsync(), Times.Once);
         Assert.Equal(vehicles, returnedVehicles);
         Assert.Equal(2, returnedVehicles.Count());
@@ -31,65 +30,58 @@ public class VehicleUnitTest
     [Fact]
     public async Task GetById_Vehicle_Success()
     {
-        // Arrange
         int validId = 1;
         int invalidId = 0;
-        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+
+        var entrepreneur = new Entrepreneur("Empresa 1", "987654321", "20123456789", "logo.png", 1, new ACME.CargoExpress.API.IAM.Domain.Model.Aggregates.User("empresa1@mail.com", "contra1234567"));
+        var vehicle = new Vehicle("Volkswagen", "ABC-123", "ABC-123", 5000f, 35f, validId, entrepreneur);
+
         var vehicleDataMock = new Mock<IVehicleRepository>();
-        vehicleDataMock.Setup(x => x.FindByIdAsync(validId).Result).Returns(vehicle);
-        vehicleDataMock.Setup(x => x.FindByIdAsync(invalidId).Result).Returns((Vehicle)null);
-        
-        // Act
+        vehicleDataMock.Setup(x => x.FindByIdAsync(validId)).ReturnsAsync(vehicle);
+        vehicleDataMock.Setup(x => x.FindByIdAsync(invalidId)).ReturnsAsync((Vehicle)null);
+
         var returnedVehicle = await vehicleDataMock.Object.FindByIdAsync(validId);
         var returnedNullVehicle = await vehicleDataMock.Object.FindByIdAsync(invalidId);
-        
-        // Assert
+
         vehicleDataMock.Verify(x => x.FindByIdAsync(validId), Times.Once);
         vehicleDataMock.Verify(x => x.FindByIdAsync(invalidId), Times.Once);
         Assert.Equal(vehicle, returnedVehicle);
         Assert.Null(returnedNullVehicle);
     }
-    
+
     [Fact]
     public async Task Add_Vehicle_Success()
     {
-        //Arrange
-       
-        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        var entrepreneur = new Entrepreneur("Empresa 1", "987654321", "20123456789", "logo.png", 1, new ACME.CargoExpress.API.IAM.Domain.Model.Aggregates.User("empresa1@mail.com", "contra1234567"));
+        var vehicle = new Vehicle("Volkswagen", "ABC-123", "ABC-123", 5000f, 35f, 1, entrepreneur);
+
         var vehicleDataMock = new Mock<IVehicleRepository>();
         vehicleDataMock.Setup(x => x.AddAsync(vehicle)).Returns(Task.CompletedTask);
-        //Act
+
         await vehicleDataMock.Object.AddAsync(vehicle);
-        //Assert
+
         vehicleDataMock.Verify(x => x.AddAsync(vehicle), Times.Once);
     }
-    
+
     [Fact]
     public void Update_Vehicle_Success()
     {
-        // Arrange
-        Vehicle vehicle = new Vehicle("Volkswagen", "A1B-234", "A1B-235", 5000, 35);
+        var entrepreneur = new Entrepreneur("Empresa 1", "987654321", "20123456789", "logo.png", 1, new ACME.CargoExpress.API.IAM.Domain.Model.Aggregates.User("empresa1@mail.com", "contra1234567"));
+        var vehicle = new Vehicle("Volkswagen", "ABC-123", "ABC-123", 5000f, 35f, 1, entrepreneur);
         var vehicleDataMock = new Mock<IVehicleRepository>();
-
-        // Update the vehicle properties
-        vehicle.Model = "Toyota";
-        vehicle.Plate = "B2C-345";
-        vehicle.TractorPlate = "B2C-346";
-        vehicle.MaxLoad = 6000;
-        vehicle.Volume = 40;
-
         vehicleDataMock.Setup(x => x.Update(vehicle));
 
-        // Act
+        vehicle.Model = "Toyota";
+        vehicle.TractorPlate = "BCD-234";
+        vehicle.MaxLoad = 6000f;
+        vehicle.Volume = 40f;
+
         vehicleDataMock.Object.Update(vehicle);
 
-        // Assert
         vehicleDataMock.Verify(x => x.Update(vehicle), Times.Once);
         Assert.Equal("Toyota", vehicle.Model);
-        Assert.Equal("B2C-345", vehicle.Plate);
-        Assert.Equal("B2C-346", vehicle.TractorPlate);
-        Assert.Equal(6000, vehicle.MaxLoad);
-        Assert.Equal(40, vehicle.Volume);
+        Assert.Equal("BCD-234", vehicle.TractorPlate);
+        Assert.Equal(6000f, vehicle.MaxLoad);
+        Assert.Equal(40f, vehicle.Volume);
     }
-    */
 }

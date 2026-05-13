@@ -8,6 +8,7 @@ namespace ACME.CargoExpress.API.User.Interfaces.REST;
 
 [ApiController]
 [Route("api/v1/[controller]")]
+[ApiExplorerSettings(IgnoreApi = true)]
 public class ConfigurationsController (IConfigurationQueryService configurationQueryService, IConfigurationCommandService configurationCommandService) : ControllerBase
 {
     [HttpPost]
