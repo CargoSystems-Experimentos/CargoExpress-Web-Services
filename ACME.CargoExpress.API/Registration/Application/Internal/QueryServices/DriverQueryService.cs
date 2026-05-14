@@ -17,5 +17,9 @@ public class DriverQueryService(IDriverRepository driverRepository)
     {
         return await driverRepository.ListAsync();
     }
-}
 
+    public async Task<IEnumerable<Driver>> Handle(GetDriversByEntrepreneurIdQuery query)
+    {
+        return await driverRepository.FindByEntrepreneurIdAsync(query.EntrepreneurId);
+    }
+}

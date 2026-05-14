@@ -17,4 +17,9 @@ public class VehicleQueryService(IVehicleRepository vehicleRepository)
     {
         return await vehicleRepository.ListAsync();
     }
+
+    public async Task<IEnumerable<Vehicle>> Handle(GetVehiclesByEntrepreneurIdQuery query)
+    {
+        return await vehicleRepository.FindByEntrepreneurIdAsync(query.EntrepreneurId);
+    }
 }

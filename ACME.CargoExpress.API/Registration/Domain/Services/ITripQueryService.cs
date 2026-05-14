@@ -13,8 +13,6 @@ public interface ITripQueryService
     Task<Expense?> Handle(GetExpensesByTripIdQuery query);
     Task<IEnumerable<Alert>> Handle(GetAlertsByOngoingTripIdQuery query);
     Task<OngoingTrip?> Handle(GetOngGoingTripByIdQuery query);
-    Task<IEnumerable<Driver>> Handle(GetDriversByEntrepreneurIdQuery query);
-    Task<IEnumerable<Vehicle>> Handle(GetVehiclesByEntrepreneurIdQuery query);
     Task<IEnumerable<Trip>> Handle(GetTripsByClientIdQuery query);
     Task<IEnumerable<Trip>> Handle(GetTripsByEntrepreneurIdQuery query);
     Task<IEnumerable<Client>> Handle(GetClientsByEntrepreneurId query);

@@ -5,4 +5,5 @@ namespace ACME.CargoExpress.API.Registration.Domain.Repositories;
 
 public interface IVehicleRepository: IBaseRepository<Vehicle>
 {
+    Task<IEnumerable<Vehicle>> FindByEntrepreneurIdAsync(int entrepreneurId);
 }

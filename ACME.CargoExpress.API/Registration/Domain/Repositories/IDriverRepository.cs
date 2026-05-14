@@ -5,5 +5,5 @@ namespace ACME.CargoExpress.API.Registration.Domain.Repositories;
 
 public interface IDriverRepository : IBaseRepository<Driver>
 {
-    
+    Task<IEnumerable<Driver>> FindByEntrepreneurIdAsync(int entrepreneurId);
 }

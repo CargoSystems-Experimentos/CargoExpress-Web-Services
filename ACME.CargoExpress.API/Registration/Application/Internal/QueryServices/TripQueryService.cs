@@ -35,14 +35,6 @@ public class TripQueryService(ITripRepository tripRepository, IAlertRepository a
     { 
         return await ongoingTripRepository.FindByTripIdAsync(query.TripId);
     }
-    public async Task<IEnumerable<Driver>> Handle(GetDriversByEntrepreneurIdQuery query)
-    {
-        return await tripRepository.FindDriversByEntrepreneurIdAsync(query.EntrepreneurId);
-    }
-    public async Task<IEnumerable<Vehicle>> Handle(GetVehiclesByEntrepreneurIdQuery query)
-    {
-        return await tripRepository.FindVehiclesByEntrepreneurIdAsync(query.EntrepreneurId);
-    }
     
     public async Task<IEnumerable<Trip>> Handle(GetTripsByClientIdQuery query)
     {
@@ -61,4 +53,3 @@ public class TripQueryService(ITripRepository tripRepository, IAlertRepository a
     
     
 }
-

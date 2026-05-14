@@ -95,37 +95,6 @@ public class EntrepreneursController (IEntrepreneurQueryService entrepreneurQuer
         }
     }
 
-    [HttpGet("{entrepreneurId}/drivers")]
-    public async Task<IActionResult> GetDrivers([FromServices] ITripQueryService tripQueryService, int entrepreneurId)
-    {
-        var drivers = await tripQueryService.Handle(new GetDriversByEntrepreneurIdQuery(entrepreneurId));
-        var driverResources = drivers.Select(d => new 
-        {
-            d.Id,
-            d.Name,
-            d.Dni,
-            d.License,
-            d.ContactNumber
-        });
-        return Ok(driverResources);
-    }
-
-    [HttpGet("{entrepreneurId}/vehicles")]
-    public async Task<IActionResult> GetVehicles([FromServices] ITripQueryService tripQueryService, int entrepreneurId)
-    {
-        var vehicles = await tripQueryService.Handle(new GetVehiclesByEntrepreneurIdQuery(entrepreneurId));
-        var vehicleResources = vehicles.Select(v => new
-        {
-            v.Id,
-            v.Model,
-            v.Plate,
-            v.TractorPlate,
-            v.MaxLoad,
-            v.Volume
-        });
-        return Ok(vehicleResources);
-    }
-
     [HttpGet("{entrepreneurId}/trips")]
     public async Task<IActionResult> GetTripsByEntrepreneurId([FromRoute] int entrepreneurId)
     {

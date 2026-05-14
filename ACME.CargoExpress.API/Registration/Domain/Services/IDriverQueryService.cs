@@ -7,4 +7,5 @@ public interface IDriverQueryService
 {
     Task<Driver?> Handle(GetDriverByIdQuery query);
     Task<IEnumerable<Driver>> Handle(GetAllDriversQuery query);
+    Task<IEnumerable<Driver>> Handle(GetDriversByEntrepreneurIdQuery query);
 }

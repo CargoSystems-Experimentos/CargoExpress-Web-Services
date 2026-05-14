@@ -17,24 +17,6 @@ public class TripRepository : BaseRepository<Trip>, ITripRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Driver>> FindDriversByEntrepreneurIdAsync(int entrepreneurId)
-    {
-        return await _context.Trips
-            .Where(t => t.EntrepreneurId == entrepreneurId)
-            .Select(t => t.Driver)
-            .Distinct()
-            .ToListAsync();
-    }
-
-    public async Task<IEnumerable<Vehicle>> FindVehiclesByEntrepreneurIdAsync(int entrepreneurId)
-    {
-        return await _context.Trips
-            .Where(t => t.EntrepreneurId == entrepreneurId)
-            .Select(t => t.Vehicle)
-            .Distinct()
-            .ToListAsync();
-    }
-
     public async Task<IEnumerable<Trip>> FindByClientIdAsync(int clientId)
     {
         return await _context.Trips.Where(t => t.ClientId == clientId).ToListAsync();

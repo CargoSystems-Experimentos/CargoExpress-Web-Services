@@ -72,4 +72,12 @@ public class DriversController(IDriverCommandService driverCommandService, IDriv
         return Ok(resource);
     }
     
+    [HttpGet("entrepreneur/{entrepreneurId}")]
+    public async Task<IActionResult> GetDriversByEntrepreneurId([FromRoute] int entrepreneurId)
+    {
+        var drivers = await driverQueryService.Handle(new GetDriversByEntrepreneurIdQuery(entrepreneurId));
+        var resources = drivers.Select(DriverResourceFromEntityAssembler.ToResourceFromEntity);
+        return Ok(resources);
+    }
+    
 }

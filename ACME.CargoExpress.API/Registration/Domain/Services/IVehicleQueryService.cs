@@ -7,4 +7,5 @@ public interface IVehicleQueryService
 {
     Task<Vehicle?> Handle(GetVehicleByIdQuery query);
     Task<IEnumerable<Vehicle>> Handle(GetAllVehiclesQuery query);
+    Task<IEnumerable<Vehicle>> Handle(GetVehiclesByEntrepreneurIdQuery query);
 }
